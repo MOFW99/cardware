@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Utomjording - Player</title>
+  <meta name="description" content="Windows Media Player skin Utomjording - demo wrapper.">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="p-4 md:min-h-dvh md:flex md:items-center md:justify-center">
+  <audio id="ap" preload="auto" playsinline>
+    <source src="./audio/MOFW_PNADNP_MST_V2.wav" type="audio/wav">
+  </audio>
+  <img src="./Utomjording.png" alt="Utomjording visual" class="w-full md:max-h-[400px] object-contain" />
+  <script>
+  (function(){
+    const img = document.querySelector('body > img');
+    const ap = document.getElementById('ap');
+    if (!img || !ap) return;
+    function ensureLoaded(){ 
+      if (!ap.src){ 
+        const s = ap.querySelector('source'); 
+        if (s && s.getAttribute) { ap.src = s.getAttribute('src'); }
+      }
+      ap.load(); 
+    }
+    function tryPlay(){
+      ensureLoaded();
+      ap.muted = false;
+      const start = function(){ ap.play().catch(function(){}); };
+      if (ap.readyState < 2){ ap.addEventListener('canplay', start, { once:true }); ap.load(); }
+      else { start(); }
+    }
+    function onUserInteract(){ tryPlay(); }
+    ['click','touchstart','pointerdown'].forEach(function(ev){ img.addEventListener(ev, onUserInteract, { passive:true }); });
+    ['click','touchstart','pointerdown'].forEach(function(ev){ document.addEventListener(ev, onUserInteract, { once:true, passive:true }); });
+  })();
+  </script>
+</body>
+</html>
