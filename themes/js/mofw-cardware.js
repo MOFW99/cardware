@@ -213,18 +213,46 @@
   });
   trackList.addEventListener('click', (e)=>{ const li = e.target.closest('li'); if (!li) return; select(li); });
 
-  // Set background from wp-content/background with best-effort formats
-  (function setBg(){
-    const bases = ['../wp-content/background', './wp-content/background'];
+  // Background image fallback (also used as <video> poster)
+  (function setupBackground(){
+    const candidates = [
+      '../wp-content/background_fallback',
+      './wp-content/background_fallback',
+      '../wp-content/background',
+      './wp-content/background',
+    ];
     const exts  = ['.jpg', '.jpeg', '.png', '.webp'];
-    (async function trySet(){
-      for (const b of bases){
+    async function pickBackground(){
+      for (const base of candidates){
         for (const ext of exts){
-          const url = b + ext;
-          try { const r = await fetch(url, { method: 'HEAD', cache: 'no-store' }); if (r.ok) { document.body.style.backgroundImage = `url('${url}')`; return; } } catch(_){ }
+          const url = base + ext;
+          try {
+            const r = await fetch(url, { method: 'HEAD', cache: 'no-store' });
+            if (r.ok) return url;
+          } catch(_){}
         }
       }
+      return null;
+    }
+    (async ()=>{
+      const url = await pickBackground();
+      if (url) document.body.style.backgroundImage = `url('${url}')`;
     })();
+
+    // Hide video if it can't autoplay or errors; body bg remains visible
+    const video = document.getElementById('bgvideo');
+    if (video){
+      const hideVideo = ()=>{ video.style.display = 'none'; };
+      video.addEventListener('error', hideVideo, { passive:true });
+      try {
+        const p = video.play?.();
+        if (p && typeof p.then === 'function'){
+          p.catch(()=> hideVideo());
+        }
+      } catch(_){
+        hideVideo();
+      }
+    }
   })();
 
   // Carica la prima skin senza selezionarla (niente stato "blu" finché non clicchi)

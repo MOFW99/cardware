@@ -9,6 +9,16 @@ html, body {
   overflow: clip;              /* previene scrollbar dovute a subpixel */
 }
 
+/* Colore selezione testo */
+::selection {
+  background: #111CFF;
+  color: #ffffff;
+}
+::-moz-selection {
+  background: #111CFF;
+  color: #ffffff;
+}
+
 body {
   background-position: center;
   background-size: cover;
