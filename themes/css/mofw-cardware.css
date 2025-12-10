@@ -55,7 +55,7 @@ body {
 
 @font-face {
   font-family: 'Conthrax';
-  src: url('../wp-content/font/Conthrax-SemiBold.woff') format('woff');
+  src: url('../../font/Conthrax-SemiBold.woff') format('woff');
   font-weight: 600;
   font-style: normal;
   font-display: swap;
