@@ -8,7 +8,7 @@
   <link rel="shortcut icon" sizes="1024x1024" href="wp-content/image/cardware.png">
 </head>
 <body>
-  <video id="bgvideo" autoplay muted loop playsinline poster="./wp-content/background_fallback.jpg">
+  <video id="bgvideo" autoplay muted loop playsinline>
     <source src="./wp-content/background.mp4" type="video/mp4">
   </video>
   <div id="app">
@@ -35,7 +35,7 @@
       </div>
       <img id="logo" alt="logo" src="../wp-content/icon/logo.png" decoding="async" onerror="if(!this.dataset.alt1){this.dataset.alt1=1; this.src='./wp-content/icon/logo.png';} else if(!this.dataset.alt2){this.dataset.alt2=1; this.src='../wp-content/icon/logo.svg';} else if(!this.dataset.alt3){this.dataset.alt3=1; this.src='./wp-content/icon/logo.svg';} else { this.style.display='none'; }" />
     </div>
-    <img id="gocceOverlay" src="./wp-content/Gocce.png" alt="gocce overlay">
+    <img id="gocceOverlay" src="./wp-content/skin/gocce.png" alt="gocce overlay">
   </div>
 
   <audio id="appAudio" preload="auto" playsinline></audio>

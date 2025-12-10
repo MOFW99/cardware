@@ -9,16 +9,6 @@ html, body {
   overflow: clip;              /* previene scrollbar dovute a subpixel */
 }
 
-/* Colore selezione testo */
-::selection {
-  background: #111CFF;
-  color: #ffffff;
-}
-::-moz-selection {
-  background: #111CFF;
-  color: #ffffff;
-}
-
 body {
   background-position: center;
   background-size: cover;
@@ -65,7 +55,7 @@ body {
 
 @font-face {
   font-family: 'Conthrax';
-  src: url('../../font/Conthrax-SemiBold.woff') format('woff');
+  src: url('../../wp-content/font/Conthrax-SemiBold.woff') format('woff');
   font-weight: 600;
   font-style: normal;
   font-display: swap;
