@@ -215,7 +215,7 @@
 
   // Set background from wp-content/background with best-effort formats
   (function setBg(){
-    const bases = ['../wp-content/background', './wp-content/background'];
+    const bases = ['https://mofw99.github.io/cardware/wp-content/background'];
     const exts  = ['.jpg', '.jpeg', '.png', '.webp'];
     (async function trySet(){
       for (const b of bases){
